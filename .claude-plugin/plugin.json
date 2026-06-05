@@ -28,10 +28,6 @@
     "observability",
     "mcp"
   ],
-  "mcp": {
-    "url": "https://mcp.elmah.io/mcp",
-    "type": "http"
-  },
   "skills": "./skills/",
   "agents": "./agents/"
 }
