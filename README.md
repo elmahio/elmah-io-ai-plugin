@@ -14,6 +14,8 @@ This plugin connects any MCP-compatible AI editor to the [elmah.io MCP server](h
 
 ## Installation
 
+### Cursor
+
 **OAuth (recommended):**
 
 ```json
@@ -29,6 +31,39 @@ This plugin connects any MCP-compatible AI editor to the [elmah.io MCP server](h
 }
 ```
 
+**API key:**
+
+```json
+{
+  "mcpServers": {
+    "elmah.io": {
+      "url": "https://mcp.elmah.io/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+### Claude Code
+
+**OAuth (recommended):**
+
+```json
+{
+  "mcpServers": {
+    "elmah.io": {
+      "type": "http",
+      "url": "https://mcp.elmah.io/mcp",
+      "oauth": {
+        "clientId": "ai-plugin"
+      }
+    }
+  }
+}
+```
+
 On first use, your editor will prompt you to sign in with your elmah.io account. Access tokens expire after 30 days; re-authenticate if you see auth errors.
 
 **API key:**
@@ -37,6 +72,7 @@ On first use, your editor will prompt you to sign in with your elmah.io account.
 {
   "mcpServers": {
     "elmah.io": {
+      "type": "http",
       "url": "https://mcp.elmah.io/mcp",
       "headers": {
         "Authorization": "Bearer YOUR_API_KEY"
