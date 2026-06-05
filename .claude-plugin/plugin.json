@@ -20,14 +20,6 @@
     "deployments",
     "uptime"
   ],
-  "category": "developer-tools",
-  "tags": [
-    "error-monitoring",
-    "logging",
-    "production-debugging",
-    "observability",
-    "mcp"
-  ],
   "skills": "./skills/",
   "agents": "./agents/"
 }

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "elmahio": {
+      "type": "http",
+      "url": "https://mcp.elmah.io/mcp",
+      "oauth": {
+        "clientId": "claudecode"
+      }
+    }
+  }
+}
