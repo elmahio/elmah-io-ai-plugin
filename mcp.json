@@ -1,10 +1,9 @@
 {
   "mcpServers": {
-    "elmah-io": {
+    "elmah.io": {
       "url": "https://mcp.elmah.io/mcp",
-      "type": "http",
       "auth": {
-        "CLIENT_ID": "cursor"
+        "CLIENT_ID": "ai-plugin"
       }
     }
   }

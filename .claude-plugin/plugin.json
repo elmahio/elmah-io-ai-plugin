@@ -1,0 +1,37 @@
+{
+  "name": "elmah-io",
+  "displayName": "elmah.io",
+  "version": "1.0.0",
+  "description": "Error monitoring and log management for your production apps. Query logs, investigate errors, track deployments, and check uptime — directly from Claude Code via the elmah.io MCP server.",
+  "author": {
+    "name": "elmah.io",
+    "email": "info@elmah.io"
+  },
+  "homepage": "https://elmah.io",
+  "repository": "https://github.com/elmahio/elmah-io-cursor-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "elmah-io",
+    "error-monitoring",
+    "logging",
+    "observability",
+    "production",
+    "debugging",
+    "deployments",
+    "uptime"
+  ],
+  "category": "developer-tools",
+  "tags": [
+    "error-monitoring",
+    "logging",
+    "production-debugging",
+    "observability",
+    "mcp"
+  ],
+  "mcp": {
+    "url": "https://mcp.elmah.io/mcp",
+    "type": "http"
+  },
+  "skills": "./skills/",
+  "agents": "./agents/"
+}

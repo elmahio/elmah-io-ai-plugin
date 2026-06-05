@@ -25,7 +25,7 @@ description: Check for new or increased errors after a deployment. Use when the 
    - Existing errors with a sharp increase in count
    - Fatal or error severity messages in the first 15 minutes post-deploy
 
-5. **Check uptime** — call `uptime_list` and `uptime_get_details` for any monitors in a degraded or down state.
+5. **Check uptime** — call `uptime_list` and `uptime_get_details` for any monitors in a down state.
 
 6. **Report findings**:
    - Deployment details (version, timestamp, deployer if available)
@@ -33,7 +33,7 @@ description: Check for new or increased errors after a deployment. Use when the 
    - List of new errors with count, severity, and first occurrence
    - List of errors with significant count increase (>2×)
    - Uptime monitor status
-   - Overall verdict: HEALTHY / DEGRADED / CRITICAL
+   - Overall verdict: HEALTHY / UNHEALTHY
 
 ## Output Shape
 
@@ -48,7 +48,7 @@ New errors after deploy:
 
 Uptime: <monitor name> — <status>
 
-Verdict: HEALTHY | DEGRADED | CRITICAL
+Verdict: HEALTHY | UNHEALTHY
 <one-line summary>
 ```
 
@@ -56,4 +56,3 @@ Verdict: HEALTHY | DEGRADED | CRITICAL
 
 - If no deployments are found, tell the user and offer to check recent errors from the last hour instead.
 - Do not mark as CRITICAL unless there are fatal errors or a downtime event.
-- DEGRADED means new errors or a measurable increase, but no service interruption.

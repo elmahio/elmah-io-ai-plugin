@@ -1,15 +1,50 @@
-# elmah.io Cursor Plugin
+# elmah.io AI Plugin
 
-Error monitoring and log management for your production apps, directly from Cursor.
+Error monitoring and log management for your production apps, directly from your AI editor.
 
-This plugin connects Cursor to the [elmah.io MCP server](https://mcp.elmah.io), giving you and your AI agent direct access to production logs, error details, deployment history, and uptime monitors — without leaving your editor.
+This plugin connects any MCP-compatible AI editor to the [elmah.io MCP server](https://mcp.elmah.io), giving you and your AI agent direct access to production logs, error details, deployment history, and uptime monitors — without leaving your editor.
+
+## Supported Editors
+
+| Editor | Manifest |
+|---|---|
+| Cursor | `.cursor-plugin/` |
+| Claude Code | `.claude-plugin/` |
+| Any MCP-compatible editor | Point at `https://mcp.elmah.io/mcp` |
 
 ## Installation
 
-1. Install this plugin via the Cursor marketplace or clone this repository.
-2. On first use, Cursor will prompt you to sign in with your elmah.io account (OAuth). Access tokens expire after 30 days; re-authenticate if you see auth errors.
+**OAuth (recommended):**
 
-The MCP server connects to `https://mcp.elmah.io/mcp` using HTTP transport.
+```json
+{
+  "mcpServers": {
+    "elmah.io": {
+      "url": "https://mcp.elmah.io/mcp",
+      "auth": {
+        "CLIENT_ID": "ai-plugin"
+      }
+    }
+  }
+}
+```
+
+On first use, your editor will prompt you to sign in with your elmah.io account. Access tokens expire after 30 days; re-authenticate if you see auth errors.
+
+**API key:**
+
+```json
+{
+  "mcpServers": {
+    "elmah.io": {
+      "url": "https://mcp.elmah.io/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
 
 ## Skills
 
@@ -40,7 +75,7 @@ Is my site up? Check uptime status
 
 ## Agents
 
-**`deployment-watchdog`** — A background agent that monitors for regressions for 30 minutes after a deployment. Alerts immediately on fatal errors or downtime; otherwise reports back with a final HEALTHY / DEGRADED / CRITICAL verdict.
+**`deployment-watchdog`** — A background agent that monitors for regressions for 30 minutes after a deployment. Alerts immediately on fatal errors or downtime; otherwise reports back with a final HEALTHY / UNHEALTHY verdict.
 
 ```
 Start the deployment watchdog for version 2.4.1
@@ -48,7 +83,7 @@ Start the deployment watchdog for version 2.4.1
 
 ## MCP Tools Available
 
-Once connected, the following elmah.io tools are available to your Cursor agent:
+Once connected, the following elmah.io tools are available to your AI agent:
 
 - `organizations_list` / `organizations_get_details` — list organizations and get quota/stats
 - `logs_list` / `logs_get_details` — list logs and get configuration details
@@ -60,7 +95,7 @@ Once connected, the following elmah.io tools are available to your Cursor agent:
 - `uptime_list` / `uptime_get_details` — list uptime monitors and get incident history
 - `heartbeats_list` / `heartbeats_get_details` — list heartbeat monitors and check health
 - `users_get_current` — get the authenticated user
-- `system_get_context` — get a summary of the user's workspace context
+- `system_get_context` — get system information like current date and time
 
 ## Requirements
 

@@ -18,7 +18,7 @@ description: Check the status of uptime monitors in elmah.io. Use when the user 
 
 2. **List all monitors** — call `uptime_list` to get all configured uptime monitors and their current status.
 
-3. **Identify issues** — for any monitor that is `down` or `degraded`:
+3. **Identify issues** — for any monitor that is `down`:
    - Call `uptime_get_details` to get the full incident history, response times, and downtime duration.
 
 4. **Correlate errors** — if a monitor is down or recently recovered, call `messages_list_recent` filtered to the downtime window to find related error messages that might explain the outage.

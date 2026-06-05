@@ -36,7 +36,7 @@ Watch for production regressions after a deployment. Activate after deploying to
 Deployment Watchdog — <version> deployed at <timestamp>
 
 Monitoring window: 30 minutes
-Status: HEALTHY | DEGRADED | CRITICAL
+Status: HEALTHY | UNHEALTHY
 
 New errors: <n>
   [ERROR] <type> — <n> occurrences
