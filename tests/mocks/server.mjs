@@ -191,7 +191,8 @@ function callTool(name, args) {
       if (!fx.LOGS.some((l) => l.id === args.logId)) return errorResult(`Unknown logId: ${args.logId}`);
       return textResult(fx.recentMessages().slice(0, args.count ?? 10));
     case "messages_get": {
-      const msg = fx.recentMessages().find((m) => m.id === args.messageId) ?? fx.latestFatalMessage();
+      const msg =
+        [...fx.recentMessages(), fx.injectedMessage()].find((m) => m.id === args.messageId) ?? fx.latestFatalMessage();
       return textResult(msg);
     }
     case "messages_list_frequent":
