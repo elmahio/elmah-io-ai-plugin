@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.2 - 2026-10-15
+
+- Added the plugin icon and a privacy policy URL to the manifest, so the
+  directory listing shows both
+- The README now lists all 23 elmah.io MCP tools. It adds the recommendations
+  tools and the six that change data (fix, open, hide, unhide, bot, unbot),
+  grouped apart from the read-only ones. The plugin's skills and agent still
+  use only read-only tools
+- Moved the contributor guidance file to `.claude/CLAUDE.md` so it no longer
+  sits at the plugin root
+
 ## 1.2.1 - 2026-10-15
 
 - Fixed the `deployment-watchdog` agent and the skills' tool allowlists. They
