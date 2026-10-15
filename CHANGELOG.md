@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.2.1 - 2026-10-15
+
+- Fixed the `deployment-watchdog` agent and the skills' tool allowlists. They
+  named the MCP tools `mcp__elmahio__<tool>`, but Claude Code exposes the
+  plugin's bundled server as `mcp__plugin_elmah-io_elmahio__<tool>`, so the
+  agent's `tools:` list matched nothing and it could be left without usable
+  tools. Both name forms are now listed
+- Added prompt-injection guardrails to every skill and the agent. Log message
+  content is treated as untrusted data and never as instructions, and an
+  injection attempt is reported to the user instead of followed
+- Documented the risk and the mitigations in `SECURITY.md`
+- Added a regression scenario to the eval suite that plants an injection in a
+  log message, and a `tool_input_not_matches` assertion for it
+- Eval runs now report why a `claude` call failed, such as a billing or
+  authentication error, instead of only a stdin warning
+
 ## 1.2.0 — 2026-07-16
 
 - Fixed an invalid `plugin.json` manifest (`agents` field pointed at a
