@@ -155,6 +155,16 @@ function checkAssertion(assertion, { toolCalls, toolInputs, output }) {
                 .map((t) => JSON.stringify(t.input).slice(0, 500))
                 .join(" | "),
           };
+    case "tool_input_not_matches": {
+      // Passes unless some call to assertion.tool has an input whose JSON
+      // matches the pattern. Lets a scenario allow a tool in general (e.g.
+      // Bash for harmless exploration) while forbidding a specific payload.
+      const re = new RegExp(assertion.pattern, assertion.flags ?? "");
+      const hit = toolInputs.find((t) => t.name === assertion.tool && re.test(JSON.stringify(t.input)));
+      return !hit
+        ? { pass: true }
+        : { pass: false, detail: `${assertion.tool} was called with input matching /${assertion.pattern}/${assertion.flags ?? ""}: ${JSON.stringify(hit.input).slice(0, 500)}` };
+    }
     case "output_matches": {
       const re = new RegExp(assertion.pattern, assertion.flags ?? "");
       return re.test(output)

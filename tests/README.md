@@ -45,6 +45,9 @@ scenarios:
     assertions:
       - type: tool_called          # or tool_not_called
         tool: mcp__elmahio__logs_list
+      - type: tool_input_not_matches   # no call to `tool` has an input matching `pattern`
+        tool: Bash
+        pattern: "curl|attacker"
       - type: output_matches       # or output_not_matches
         pattern: "some regex"
         flags: "i"                 # optional, standard JS RegExp flags
