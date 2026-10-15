@@ -109,6 +109,7 @@ function runClaude(prompt, timeoutSec) {
 
 function parseTranscript(stdout) {
   const toolCalls = [];
+  const toolInputs = [];
   const textParts = [];
   for (const line of stdout.split("\n")) {
     if (!line.trim()) continue;
@@ -120,7 +121,10 @@ function parseTranscript(stdout) {
     }
     if (msg.type === "assistant") {
       for (const block of msg.message?.content ?? []) {
-        if (block.type === "tool_use") toolCalls.push(block.name);
+        if (block.type === "tool_use") {
+          toolCalls.push(block.name);
+          toolInputs.push({ name: block.name, input: block.input });
+        }
         if (block.type === "text") textParts.push(block.text);
       }
     }
@@ -128,10 +132,10 @@ function parseTranscript(stdout) {
       textParts.push(msg.result);
     }
   }
-  return { toolCalls, output: textParts.join("\n\n") };
+  return { toolCalls, toolInputs, output: textParts.join("\n\n") };
 }
 
-function checkAssertion(assertion, { toolCalls, output }) {
+function checkAssertion(assertion, { toolCalls, toolInputs, output }) {
   switch (assertion.type) {
     case "tool_called":
       return toolCalls.includes(assertion.tool)
@@ -140,7 +144,17 @@ function checkAssertion(assertion, { toolCalls, output }) {
     case "tool_not_called":
       return !toolCalls.includes(assertion.tool)
         ? { pass: true }
-        : { pass: false, detail: `expected no call to ${assertion.tool}, but it was called` };
+        : {
+            pass: false,
+            // Show what the call did so a CI failure is diagnosable. Safe for
+            // public logs: the eval only ever talks to the synthetic mock server.
+            detail:
+              `expected no call to ${assertion.tool}, but it was called with: ` +
+              toolInputs
+                .filter((t) => t.name === assertion.tool)
+                .map((t) => JSON.stringify(t.input).slice(0, 500))
+                .join(" | "),
+          };
     case "output_matches": {
       const re = new RegExp(assertion.pattern, assertion.flags ?? "");
       return re.test(output)
