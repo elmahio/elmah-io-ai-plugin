@@ -1,5 +1,6 @@
-# Claude Code local settings (personal, not project-wide)
-.claude
+# Claude Code local settings (personal, not project-wide). .claude/CLAUDE.md is tracked.
+.claude/*
+!.claude/CLAUDE.md
 
 # macOS
 .DS_Store

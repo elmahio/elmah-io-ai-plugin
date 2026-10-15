@@ -10,6 +10,7 @@
   "homepage": "https://elmah.io",
   "repository": "https://github.com/elmahio/elmah-io-ai-plugin",
   "license": "Apache-2.0",
+  "privacyPolicyUrl": "https://elmah.io/legal/privacy-policy/",
   "keywords": [
     "elmah-io",
     "error-monitoring",
