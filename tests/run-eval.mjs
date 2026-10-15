@@ -69,6 +69,31 @@ function spawnClaude(args) {
   return spawn("claude", args, { cwd: REPO_ROOT });
 }
 
+// With --output-format stream-json, claude reports API failures (rate limit,
+// exhausted credit, auth) as events on stdout, not stderr. Pull them out so a
+// failed run says why instead of only showing the stdin warning.
+function describeFailure(stdout, stderr) {
+  const reasons = [];
+  for (const line of stdout.split("\n")) {
+    if (!line.trim()) continue;
+    let msg;
+    try {
+      msg = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    if (msg.type === "result" && msg.is_error) {
+      reasons.push(`result(${msg.subtype ?? "error"}): ${String(msg.result ?? "").slice(0, 500)}`);
+    } else if (msg.type === "system" && msg.subtype === "api_retry") {
+      reasons.push(`api_retry: ${JSON.stringify(msg).slice(0, 300)}`);
+    } else if (msg.type === "assistant" && msg.error) {
+      reasons.push(`assistant error: ${String(msg.error)}`);
+    }
+  }
+  const err = stderr.replace(/^Warning: no stdin data received.*$/gm, "").trim();
+  return [...reasons.slice(-5), err.slice(0, 1000)].filter(Boolean).join(" | ") || "(no output)";
+}
+
 function runClaude(prompt, timeoutSec) {
   return new Promise((resolve, reject) => {
     const args = [
@@ -83,6 +108,8 @@ function runClaude(prompt, timeoutSec) {
     if (!NO_BARE) args.unshift("--bare");
 
     const proc = spawnClaude(args);
+    // Nothing is piped in; close stdin so claude doesn't wait 3s for it.
+    proc.stdin.end();
     let stdout = "";
     let stderr = "";
     const timer = setTimeout(() => {
@@ -99,7 +126,7 @@ function runClaude(prompt, timeoutSec) {
     proc.on("exit", (code) => {
       clearTimeout(timer);
       if (code !== 0) {
-        reject(new Error(`claude exited with code ${code}: ${stderr.slice(0, 2000)}`));
+        reject(new Error(`claude exited with code ${code}: ${describeFailure(stdout, stderr)}`));
         return;
       }
       resolve(stdout);
