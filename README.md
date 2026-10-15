@@ -119,19 +119,30 @@ Start the deployment watchdog for version 2.4.1
 
 ## MCP Tools Available
 
-Once connected, the following elmah.io tools are available to your AI agent:
+Once connected, the following elmah.io tools are available to your AI agent.
 
-- `organizations_list` / `organizations_get_details` — list organizations and get quota/stats
-- `logs_list` / `logs_get_details` — list logs and get configuration details
-- `messages_list_recent` — fetch recent log messages with filtering
-- `messages_list_frequent` — get the most frequently occurring errors
-- `messages_get` — fetch a single message with full details (stack trace, custom data, etc.)
-- `messages_count` — count messages matching a query
-- `deployments_list` — list deployments with timestamps and versions
-- `uptime_list` / `uptime_get_details` — list uptime monitors and get incident history
-- `heartbeats_list` / `heartbeats_get_details` — list heartbeat monitors and check health
-- `users_get_current` — get the authenticated user
-- `system_get_context` — get system information like current date and time
+**Read-only**
+
+- `organizations_list` / `organizations_get_details`: list organizations and get quota/stats
+- `logs_list` / `logs_get_details`: list logs and get configuration details
+- `messages_list_recent`: fetch recent log messages with filtering
+- `messages_list_frequent`: get the most frequently occurring errors
+- `messages_get`: fetch a single message with full details (stack trace, custom data, etc.)
+- `messages_count`: count messages matching a query
+- `deployments_list`: list deployments with timestamps and versions
+- `uptime_list` / `uptime_get_details`: list uptime monitors and get incident history
+- `heartbeats_list` / `heartbeats_get_details`: list heartbeat monitors and check health
+- `recommendations_list` / `recommendations_get_details`: list and read automated suggestions for improving your monitoring setup, security and configuration
+- `users_get_current`: get the authenticated user
+- `system_get_context`: get system information like current date and time
+
+**Change data**
+
+These tools modify messages in your log. The server tells the agent to call them only when you have explicitly asked, and none of the plugin's skills or agents use them.
+
+- `messages_fix` / `messages_open`: mark a message as fixed, or reopen it
+- `messages_hide` / `messages_unhide`: hide a message, or unhide it
+- `messages_bot` / `messages_unbot`: mark messages as bot traffic (1-500 per call), or undo it
 
 ## Requirements
 
