@@ -10,6 +10,7 @@ This plugin connects any MCP-compatible AI editor to the [elmah.io MCP server](h
 |---|---|
 | Cursor | `.cursor-plugin/` |
 | Claude Code | `.claude-plugin/` |
+| ChatGPT and Codex | `.openai-plugin/` |
 | Any MCP-compatible editor | Point at `https://mcp.elmah.io/mcp` |
 
 ## Installation
@@ -81,6 +82,18 @@ On first use, your editor will prompt you to sign in with your elmah.io account.
   }
 }
 ```
+
+### OpenAI (ChatGPT and Codex)
+
+The plugin is packaged for OpenAI's plugin directory from `.openai-plugin/`. It bundles the four skills and the elmah.io MCP server, and signs in with your elmah.io account over OAuth. The `deployment-watchdog` agent is not included, since OpenAI plugins don't support agents.
+
+To build the package, run:
+
+```sh
+node scripts/build-openai-zip.mjs
+```
+
+This validates the manifest against OpenAI's submission limits and writes `dist/elmah-io-openai-<version>.zip`. The same build runs in GitHub Actions on every push and pull request, and the ZIP is attached to the run as an artifact. Upload it in the [OpenAI dashboard](https://platform.openai.com/plugins) to submit or update the plugin. Changes to the manifest or skills go through OpenAI's review. Changes to the MCP server's tools are picked up by OpenAI's daily scan.
 
 ## Skills
 

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "elmah-io",
+  "version": "1.2.2",
+  "description": "Error monitoring and log management for your production apps. Query logs, investigate errors, track deployments, and check uptime.",
+  "author": {
+    "name": "elmah.io",
+    "email": "info@elmah.io",
+    "url": "https://elmah.io"
+  },
+  "homepage": "https://elmah.io",
+  "repository": "https://github.com/elmahio/elmah-io-ai-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "elmah-io",
+    "error-monitoring",
+    "logging",
+    "observability",
+    "debugging",
+    "deployments",
+    "uptime"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "elmah.io",
+        "shortDescription": "Analyze error logs",
+        "longDescription": "Inspect your elmah.io account from ChatGPT and Codex. List the logs and organizations you can access, find recent and frequent errors, review deployments, check uptime and heartbeat status, and pull the full details of a single error to debug it. You can also mark messages as fixed, hidden, open or bot traffic. Sign in with your elmah.io account and the plugin only sees the logs that account can access.",
+        "developerName": "elmah.io",
+        "category": "Developer Tools",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://elmah.io",
+        "supportURL": "https://elmah.io/contact/",
+        "privacyPolicyURL": "https://elmah.io/legal/privacy-policy/",
+        "termsOfServiceURL": "https://elmah.io/legal/terms-of-use/",
+        "defaultPrompt": [
+          "What are the most frequent errors in my production log this week?",
+          "Did my last deployment introduce new errors?",
+          "Are all my uptime checks passing?"
+        ],
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png"
+      }
+    }
+  }
+}

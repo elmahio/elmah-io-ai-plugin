@@ -11,3 +11,6 @@ desktop.ini
 
 # Node (eval test runner)
 node_modules/
+
+# OpenAI plugin build output
+dist/

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "elmahio": {
+      "type": "streamable-http",
+      "url": "https://mcp.elmah.io/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "provided",
+              "clientId": "ai-plugin",
+              "tokenEndpointAuthMethod": "none"
+            },
+            "authorizationUrl": "https://mcp.elmah.io/authorize",
+            "tokenUrl": "https://mcp.elmah.io/token"
+          }
+        }
+      }
+    }
+  }
+}

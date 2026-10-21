@@ -4,10 +4,15 @@ Guidance for Claude Code when working in this repository.
 
 ## Versioning
 
-The plugin version lives in two places that must always match:
+The plugin version lives in three places that must always match:
 
 - `.claude-plugin/plugin.json`
 - `.cursor-plugin/plugin.json`
+- `.openai-plugin/plugin.json`
+
+`scripts/build-openai-zip.mjs` fails if they differ. It builds the OpenAI
+submission ZIP into `dist/` (run by the `openai-package` workflow). The ZIP is
+uploaded manually in the OpenAI dashboard; there is no upload API.
 
 Every release also needs a dated entry at the top of `CHANGELOG.md`.
 
