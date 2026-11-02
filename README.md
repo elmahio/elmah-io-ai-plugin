@@ -156,6 +156,7 @@ These tools modify messages in your log. The server tells the agent to call them
 - `messages_fix` / `messages_open`: mark a message as fixed, or reopen it
 - `messages_hide` / `messages_unhide`: hide a message, or unhide it
 - `messages_bot` / `messages_unbot`: mark messages as bot traffic (1-500 per call), or undo it
+- `messages_bot_by_query` / `messages_unbot_by_query`: mark every message matching a query as bot traffic, or undo it, without passing IDs
 
 ## Requirements
 
