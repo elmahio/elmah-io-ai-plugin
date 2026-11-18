@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 - 2026-11-17
+
+- The `debug-production-error` skill now calls the new `messages_histogram`
+  tool to show when an error started and whether it is growing, spiking, or
+  has stopped
+- The README lists `messages_histogram` among the read-only tools
+
 ## 1.2.2 - 2026-10-15
 
 - Added the plugin icon and a privacy policy URL to the manifest, so the

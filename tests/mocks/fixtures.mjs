@@ -150,6 +150,25 @@ export function messageCount() {
   return 59; // 47 + 12
 }
 
+// Hourly buckets for the last 24 hours: quiet until the burst that followed the deployment above,
+// so an agent can see the errors started about 38 minutes ago. Totals match messageCount().
+export function histogram(interval) {
+  const hourStart = Math.floor(Date.now() / HOUR) * HOUR;
+  const buckets = [];
+  for (let i = 23; i >= 0; i--) {
+    const count = i === 0 ? 47 : i === 1 ? 12 : 0;
+    buckets.push({ time: new Date(hourStart - i * HOUR).toISOString(), count });
+  }
+  return {
+    ok: true,
+    interval: interval ?? "hour",
+    from: iso(DAY),
+    to: iso(0),
+    total: 59,
+    buckets,
+  };
+}
+
 // Production has a monitor currently down; Staging is fully healthy, to exercise
 // both the incident-reporting path and the "all healthy, keep it brief" guardrail.
 export function uptimeChecks(logId) {

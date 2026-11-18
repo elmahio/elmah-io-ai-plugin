@@ -11,6 +11,8 @@ scenarios:
         tool: mcp__elmahio__messages_get
       - type: tool_called
         tool: mcp__elmahio__deployments_list
+      - type: tool_called
+        tool: mcp__elmahio__messages_histogram
       - type: output_matches
         pattern: "NullReferenceException"
       - type: output_matches

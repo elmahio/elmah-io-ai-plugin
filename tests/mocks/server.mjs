@@ -111,6 +111,22 @@ const TOOLS = [
     },
   },
   {
+    name: "messages_histogram",
+    description: "Count log messages per hour, day or week to see when errors started, spiked or stopped.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        logId: { type: "string" },
+        severity: { type: ["string", "null"] },
+        query: { type: ["string", "null"] },
+        from: { type: ["string", "null"], format: "date-time" },
+        to: { type: ["string", "null"], format: "date-time" },
+        interval: { type: ["string", "null"], description: "hour|day|week" },
+      },
+      required: ["logId"],
+    },
+  },
+  {
     name: "deployments_list",
     description: "List recent deployments for a log.",
     inputSchema: {
@@ -201,6 +217,9 @@ function callTool(name, args) {
     case "messages_count":
       if (!fx.LOGS.some((l) => l.id === args.logId)) return errorResult(`Unknown logId: ${args.logId}`);
       return textResult({ count: fx.messageCount() });
+    case "messages_histogram":
+      if (!fx.LOGS.some((l) => l.id === args.logId)) return errorResult(`Unknown logId: ${args.logId}`);
+      return textResult(fx.histogram(args.interval));
     case "deployments_list":
       if (!fx.LOGS.some((l) => l.id === args.logId)) return errorResult(`Unknown logId: ${args.logId}`);
       return textResult(fx.deployments(args.logId).slice(0, args.count ?? 5));

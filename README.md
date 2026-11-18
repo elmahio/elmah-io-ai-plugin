@@ -142,6 +142,7 @@ Once connected, the following elmah.io tools are available to your AI agent.
 - `messages_list_frequent`: get the most frequently occurring errors
 - `messages_get`: fetch a single message with full details (stack trace, custom data, etc.)
 - `messages_count`: count messages matching a query
+- `messages_histogram`: count messages per hour, day or week, to see when errors started, spiked or stopped
 - `deployments_list`: list deployments with timestamps and versions
 - `uptime_list` / `uptime_get_details`: list uptime monitors and get incident history
 - `heartbeats_list` / `heartbeats_get_details`: list heartbeat monitors and check health
