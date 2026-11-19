@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.0 - 2026-11-19
+
+- The plugin moved to `plugins/elmah-io/` so the Claude plugin directory can
+  read it without the test tooling. The marketplace install command is
+  unchanged: `/plugin install elmah-io --marketplace elmahio/elmah-io-ai-plugin`
+- The skills no longer pre-approve the elmah.io tools, so Claude Code asks
+  before the first call to each one. Choose "Always allow" to skip the prompt
+- The `deployment-watchdog` agent no longer declares `tools` or `background`
+  in its frontmatter, because the directory refuses both. It is now told in
+  its instructions to use only the five read-only tools it needs
+- Cursor's MCP server config moved from `mcp.json` into the Cursor manifest
+- The README lists the new `stacktrace_render` tool, which shows a stack trace
+  as a formatted view in AI clients that support MCP Apps
+
 ## 1.3.0 - 2026-11-17
 
 - The `debug-production-error` skill now calls the new `messages_histogram`
