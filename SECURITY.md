@@ -42,11 +42,14 @@ Mitigations in this repo:
 - Every skill and the agent instruct the model to treat MCP tool output as
   untrusted data, never as instructions (see each `SKILL.md`/`deployment-watchdog.md`
   Guardrails section).
-- `plugins/elmah-io/agents/deployment-watchdog.md` declares `tools:` in frontmatter, scoped to
-  the specific read-only elmah.io MCP tools it needs — no shell or filesystem
-  access. This is an actual hard restriction on the subagent's tool registry,
-  which matters most here since this agent is designed to run unattended
-  (`background: true`) in CI/CD with no human reviewing each step.
+- `plugins/elmah-io/agents/deployment-watchdog.md` tells the model to use only
+  the five read-only elmah.io tools it needs, and no shell or filesystem access.
+  This is an instruction, not a hard restriction. The agent doesn't declare
+  `tools:` or `background:` in its frontmatter, because the Claude plugin
+  directory refuses those keys from organizations that aren't verified, so the
+  agent inherits the tools of the session it runs in. That matters most when it
+  runs unattended in CI/CD with no human reviewing each step, so run it with a
+  narrow tool allowlist in your own session or pipeline.
 - The skills don't declare `allowed-tools`. It would only pre-approve tool
   calls to skip permission prompts, which is not a security control, and
   the Claude plugin directory refuses it for organizations that aren't
@@ -59,14 +62,12 @@ Mitigations in this repo:
 
 **Tool name prefixes (verified):** when Claude Code loads this plugin, its
 bundled `.mcp.json` server is exposed as
-`mcp__plugin_elmah-io_elmahio__<tool>`, not `mcp__elmahio__<tool>`. The
-agent's `tools:` entries therefore list both forms: the plugin-prefixed
-names for users of the installed plugin, and the `mcp__elmahio__<tool>` names
-for the eval harness and for anyone who configures the server manually under
-the key `elmahio` (see the README). Confirmed by running `claude --plugin-dir ./plugins/elmah-io`
-against a local mock server and reading the tool list in the init event. If the
-plugin or server key is ever renamed, update the list, because a stale `tools:`
-list on the agent silently leaves it with no usable tools.
+`mcp__plugin_elmah-io_elmahio__<tool>`, not `mcp__elmahio__<tool>`. Anyone who
+configures the server manually under the key `elmahio` (see the README) gets
+the `mcp__elmahio__<tool>` names instead. Confirmed by running
+`claude --plugin-dir ./plugins/elmah-io` against a local mock server and
+reading the tool list in the init event. Use the right prefix when writing a
+tool allowlist for the agent.
 
 This is defense against one layer of the problem. The MCP server
 (`mcp.elmah.io`) returning message content is out of scope for this repo (see

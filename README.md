@@ -134,7 +134,7 @@ Is my site up? Check uptime status
 
 ## Agents
 
-**`deployment-watchdog`** — A background agent that monitors for regressions for 30 minutes after a deployment. Alerts immediately on fatal errors or downtime; otherwise reports back with a final HEALTHY / UNHEALTHY verdict.
+**`deployment-watchdog`** — An agent that monitors for regressions for 30 minutes after a deployment. Alerts immediately on fatal errors or downtime; otherwise reports back with a final HEALTHY / UNHEALTHY verdict.
 
 ```
 Start the deployment watchdog for version 2.4.1

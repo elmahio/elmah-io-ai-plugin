@@ -79,6 +79,6 @@ before treating it as a real bug. Consistent, repeated failures are the
 signal worth acting on.
 
 The `deployment-watchdog` scenario is the slowest and most expensive one (it
-runs a real background subagent through several tool calls before reporting a
+runs a real subagent through several tool calls before reporting a
 verdict) — expect it to take a few minutes and cost noticeably more than the
 skill scenarios.

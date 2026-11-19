@@ -34,7 +34,8 @@ The plugin lives in `plugins/elmah-io/` so the Claude plugin directory can be
 submitted that folder alone. It refuses scripts and package files from
 organizations that aren't Verified, and `tests/` and `scripts/` have both. Keep
 those, `.github/` and `.openai-plugin/` outside the folder, and don't add
-`.mjs`, `.sh` or package manager files inside it. Cursor manifest paths can't
+`.mjs`, `.sh` or package manager files inside it, and no MCP file Claude Code
+doesn't read (the directory refuses its Cursor-style `auth` field). Cursor manifest paths can't
 use `..`, so each editor's manifest stays next to the skills. The root
 `.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json` point
 at the folder.

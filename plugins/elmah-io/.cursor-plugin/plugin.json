@@ -29,5 +29,13 @@
     "mcp"
   ],
   "skills": "./skills/",
-  "agents": "./agents/"
+  "agents": "./agents/",
+  "mcpServers": {
+    "elmah.io": {
+      "url": "https://mcp.elmah.io/mcp",
+      "auth": {
+        "CLIENT_ID": "ai-plugin"
+      }
+    }
+  }
 }

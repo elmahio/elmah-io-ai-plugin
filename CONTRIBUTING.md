@@ -35,19 +35,21 @@ did the wrong thing.
 ## Adding or editing the agent
 
 `plugins/elmah-io/agents/deployment-watchdog.md` follows the same frontmatter idea, plus
-`model`, `background`, and other fields documented in [Claude Code's plugin
+`model`. The Claude plugin directory refuses `tools` and `background` from
+organizations that aren't verified, so don't add them. Other fields are documented in [Claude Code's plugin
 reference](https://code.claude.com/docs/en/plugins-reference). Use a real
 model identifier (`sonnet`, `opus`, `haiku`) — not `fast`, which is a Claude
 Code session toggle, not a valid subagent model value.
 
 ## MCP wiring
 
-Two files in `plugins/elmah-io/` both define the same MCP server, in the shape each
-editor expects, and both are auto-discovered by convention (neither is
-referenced from `plugin.json`):
+The same MCP server is defined in the shape each editor expects:
 
-- `.mcp.json` — Claude Code
-- `mcp.json` — Cursor
+- `plugins/elmah-io/.mcp.json` for Claude Code, found by convention
+- `mcpServers` inside `plugins/elmah-io/.cursor-plugin/plugin.json` for Cursor
+
+Cursor needs its `auth` block there. The Claude plugin directory refuses unknown
+fields in MCP files, so don't add a Cursor-shaped `mcp.json` to the folder.
 
 If you change the server URL or auth shape, update both.
 
