@@ -1,4 +1,4 @@
-// Builds the OpenAI plugin package: .openai-plugin/* + skills/ -> dist/elmah-io-openai-<version>.zip
+// Builds the OpenAI plugin package: .openai-plugin/* + plugins/elmah-io/skills/ -> dist/elmah-io-openai-<version>.zip
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync, statSync } from 'node:fs';
 import { join, dirname, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,6 +6,7 @@ import { deflateRawSync } from 'node:zlib';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const src = join(root, '.openai-plugin');
+const pluginDir = join(root, 'plugins', 'elmah-io');
 const errors = [];
 const fail = (msg) => errors.push(msg);
 
@@ -41,7 +42,7 @@ for (const s of iface.screenshots ?? []) if (!existsSync(join(src, s))) fail(`sc
 
 // Versions must match the other editors' manifests
 for (const p of ['.claude-plugin/plugin.json', '.cursor-plugin/plugin.json']) {
-  const v = readJson(join(root, p)).version;
+  const v = readJson(join(pluginDir, p)).version;
   if (v !== manifest.version) fail(`version ${manifest.version} does not match ${p} (${v})`);
 }
 
@@ -60,8 +61,8 @@ for (const f of ['plugin.json', 'mcp.json']) files.push([f, readFileSync(join(sr
 if (existsSync(join(src, 'assets'))) {
   for (const p of walk(join(src, 'assets'))) files.push([`assets/${relative(join(src, 'assets'), p).split(sep).join('/')}`, readFileSync(p)]);
 }
-for (const p of walk(join(root, 'skills'))) {
-  const name = relative(root, p).split(sep).join('/');
+for (const p of walk(join(pluginDir, 'skills'))) {
+  const name = relative(pluginDir, p).split(sep).join('/');
   let data = readFileSync(p);
   if (p.endsWith('SKILL.md')) {
     // allowed-tools lists Claude Code tool names that mean nothing to OpenAI

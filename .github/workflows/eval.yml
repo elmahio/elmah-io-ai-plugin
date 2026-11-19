@@ -20,7 +20,9 @@ jobs:
         run: npm install -g @anthropic-ai/claude-code
 
       - name: Validate plugin manifest
-        run: claude plugin validate .
+        run: |
+          claude plugin validate ./plugins/elmah-io
+          claude plugin validate .
 
       - name: Install eval runner dependencies
         working-directory: tests

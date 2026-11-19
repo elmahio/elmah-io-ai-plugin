@@ -1,7 +1,6 @@
 ---
 name: post-deployment-check
 description: Check for new or increased errors after a deployment. Use when the user just shipped code and wants to confirm nothing broke in production.
-allowed-tools: mcp__plugin_elmah-io_elmahio__system_get_context mcp__plugin_elmah-io_elmahio__logs_list mcp__plugin_elmah-io_elmahio__deployments_list mcp__plugin_elmah-io_elmahio__messages_count mcp__plugin_elmah-io_elmahio__messages_list_frequent mcp__plugin_elmah-io_elmahio__messages_list_recent mcp__plugin_elmah-io_elmahio__uptime_list mcp__plugin_elmah-io_elmahio__uptime_get_details mcp__elmahio__system_get_context mcp__elmahio__logs_list mcp__elmahio__deployments_list mcp__elmahio__messages_count mcp__elmahio__messages_list_frequent mcp__elmahio__messages_list_recent mcp__elmahio__uptime_list mcp__elmahio__uptime_get_details
 ---
 
 # Post-Deployment Check

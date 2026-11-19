@@ -9,7 +9,7 @@
     {
       "name": "elmah-io",
       "displayName": "elmah.io",
-      "source": "./",
+      "source": "./plugins/elmah-io",
       "description": "Error monitoring and log management for your production apps. Query logs, investigate errors, track deployments, and check uptime.",
       "category": "developer-tools",
       "tags": [

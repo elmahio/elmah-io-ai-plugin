@@ -1,7 +1,6 @@
 ---
 name: debug-production-error
 description: Investigate a specific production error in elmah.io. Use when the user reports an error, shares an error ID, stack trace, or asks what's going wrong in production.
-allowed-tools: mcp__plugin_elmah-io_elmahio__system_get_context mcp__plugin_elmah-io_elmahio__logs_list mcp__plugin_elmah-io_elmahio__messages_get mcp__plugin_elmah-io_elmahio__messages_list_recent mcp__plugin_elmah-io_elmahio__messages_list_frequent mcp__plugin_elmah-io_elmahio__messages_histogram mcp__plugin_elmah-io_elmahio__deployments_list mcp__elmahio__system_get_context mcp__elmahio__logs_list mcp__elmahio__messages_get mcp__elmahio__messages_list_recent mcp__elmahio__messages_list_frequent mcp__elmahio__messages_histogram mcp__elmahio__deployments_list
 ---
 
 # Debug Production Error

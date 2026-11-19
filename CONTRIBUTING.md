@@ -6,7 +6,7 @@ new skills, fixes to existing ones, editor support — are welcome.
 
 ## Adding or editing a skill
 
-Skills live in `skills/<skill-name>/SKILL.md`.
+Skills live in `plugins/elmah-io/skills/<skill-name>/SKILL.md`.
 
 **Naming**: kebab-case, leading with the action the user is trying to take —
 `debug-production-error`, `check-uptime-status`. Prefer a verb the user would
@@ -34,7 +34,7 @@ did the wrong thing.
 
 ## Adding or editing the agent
 
-`agents/deployment-watchdog.md` follows the same frontmatter idea, plus
+`plugins/elmah-io/agents/deployment-watchdog.md` follows the same frontmatter idea, plus
 `model`, `background`, and other fields documented in [Claude Code's plugin
 reference](https://code.claude.com/docs/en/plugins-reference). Use a real
 model identifier (`sonnet`, `opus`, `haiku`) — not `fast`, which is a Claude
@@ -42,7 +42,7 @@ Code session toggle, not a valid subagent model value.
 
 ## MCP wiring
 
-Two files at the repo root both define the same MCP server, in the shape each
+Two files in `plugins/elmah-io/` both define the same MCP server, in the shape each
 editor expects, and both are auto-discovered by convention (neither is
 referenced from `plugin.json`):
 
@@ -69,9 +69,10 @@ assertion schema. CI runs the full suite on every push and PR.
 
 ## Manifests
 
-`.claude-plugin/plugin.json` and `.cursor-plugin/plugin.json` hold per-editor
-metadata (name, description, keywords). Skills and agents are auto-discovered
-from `skills/` and `agents/` — don't add `"skills"` or `"agents"` path fields
+`plugins/elmah-io/.claude-plugin/plugin.json` and
+`plugins/elmah-io/.cursor-plugin/plugin.json` hold per-editor metadata (name,
+description, keywords). Skills and agents are auto-discovered from `skills/` and
+`agents/` in that folder — don't add `"skills"` or `"agents"` path fields
 to `plugin.json`; a directory string there fails Claude Code's manifest
 validation and breaks plugin loading entirely.
 

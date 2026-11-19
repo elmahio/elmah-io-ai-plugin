@@ -8,9 +8,11 @@ This plugin connects any MCP-compatible AI editor to the [elmah.io MCP server](h
 
 | Editor | Manifest |
 |---|---|
-| Cursor | `.cursor-plugin/` |
-| Claude Code | `.claude-plugin/` |
+| Cursor | `plugins/elmah-io/.cursor-plugin/` |
+| Claude Code | `plugins/elmah-io/.claude-plugin/` |
 | ChatGPT and Codex | `.openai-plugin/` |
+
+The plugin itself (skills, agent, manifests and MCP config) lives in `plugins/elmah-io/`. The repo root holds the marketplace files, the OpenAI package source and the test tooling.
 | Any MCP-compatible editor | Point at `https://mcp.elmah.io/mcp` |
 
 ## Installation
@@ -48,6 +50,14 @@ This plugin connects any MCP-compatible AI editor to the [elmah.io MCP server](h
 ```
 
 ### Claude Code
+
+Install the plugin from its marketplace:
+
+```
+/plugin install elmah-io --marketplace elmahio/elmah-io-ai-plugin
+```
+
+Or add the MCP server on its own, without the skills and the agent.
 
 **OAuth (recommended):**
 
@@ -133,6 +143,8 @@ Start the deployment watchdog for version 2.4.1
 ## MCP Tools Available
 
 Once connected, the following elmah.io tools are available to your AI agent.
+
+Claude Code asks before the first call to each elmah.io tool. Choose "Always allow" to skip the prompt from then on.
 
 **Read-only**
 

@@ -1,6 +1,6 @@
 # Skill evals
 
-Regression tests for the skills in `skills/` and the `deployment-watchdog` agent.
+Regression tests for the skills in `plugins/elmah-io/skills/` and the `deployment-watchdog` agent.
 Each scenario sends a real prompt through the real `claude` CLI with this
 plugin loaded, but points the MCP connection at a local mock server
 (`tests/mocks/server.mjs`) instead of `https://mcp.elmah.io/mcp`, so nothing

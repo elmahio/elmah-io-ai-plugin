@@ -17,6 +17,7 @@ import yaml from "js-yaml";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, "..");
+const PLUGIN_DIR = join(REPO_ROOT, "plugins", "elmah-io");
 const MOCK_SERVER = join(__dirname, "mocks", "server.mjs");
 const MCP_CONFIG = join(__dirname, "mocks", "mcp-config.json");
 
@@ -98,7 +99,7 @@ function runClaude(prompt, timeoutSec) {
   return new Promise((resolve, reject) => {
     const args = [
       "-p", prompt,
-      "--plugin-dir", REPO_ROOT,
+      "--plugin-dir", PLUGIN_DIR,
       "--mcp-config", MCP_CONFIG,
       "--strict-mcp-config",
       "--permission-mode", "bypassPermissions",

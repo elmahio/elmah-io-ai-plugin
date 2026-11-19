@@ -6,8 +6,8 @@ Guidance for Claude Code when working in this repository.
 
 The plugin version lives in three places that must always match:
 
-- `.claude-plugin/plugin.json`
-- `.cursor-plugin/plugin.json`
+- `plugins/elmah-io/.claude-plugin/plugin.json`
+- `plugins/elmah-io/.cursor-plugin/plugin.json`
 - `.openai-plugin/plugin.json`
 
 `scripts/build-openai-zip.mjs` fails if they differ. It builds the OpenAI
@@ -27,6 +27,17 @@ unsure.
 
 Marketplace installs only update when the version changes, so a user-facing fix
 that ships without a bump may never reach installed copies.
+
+## Layout
+
+The plugin lives in `plugins/elmah-io/` so the Claude plugin directory can be
+submitted that folder alone. It refuses scripts and package files from
+organizations that aren't Verified, and `tests/` and `scripts/` have both. Keep
+those, `.github/` and `.openai-plugin/` outside the folder, and don't add
+`.mjs`, `.sh` or package manager files inside it. Cursor manifest paths can't
+use `..`, so each editor's manifest stays next to the skills. The root
+`.claude-plugin/marketplace.json` and `.cursor-plugin/marketplace.json` point
+at the folder.
 
 ## Commits and pushes
 

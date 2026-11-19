@@ -1,7 +1,6 @@
 ---
 name: check-uptime-status
 description: Check the status of uptime monitors in elmah.io. Use when the user wants to know if their services are up, or investigate a downtime event.
-allowed-tools: mcp__plugin_elmah-io_elmahio__system_get_context mcp__plugin_elmah-io_elmahio__organizations_list mcp__plugin_elmah-io_elmahio__logs_list mcp__plugin_elmah-io_elmahio__uptime_list mcp__plugin_elmah-io_elmahio__uptime_get_details mcp__plugin_elmah-io_elmahio__messages_list_recent mcp__elmahio__system_get_context mcp__elmahio__organizations_list mcp__elmahio__logs_list mcp__elmahio__uptime_list mcp__elmahio__uptime_get_details mcp__elmahio__messages_list_recent
 ---
 
 # Check Uptime Status

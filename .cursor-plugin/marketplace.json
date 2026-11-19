@@ -1,0 +1,17 @@
+{
+  "name": "elmah-io",
+  "owner": {
+    "name": "elmah.io",
+    "email": "info@elmah.io"
+  },
+  "metadata": {
+    "description": "Error monitoring and log management for your production apps, directly from your AI editor via elmah.io."
+  },
+  "plugins": [
+    {
+      "name": "elmah-io",
+      "source": "plugins/elmah-io",
+      "description": "Error monitoring and log management for your production apps. Query logs, investigate errors, track deployments, and check uptime."
+    }
+  ]
+}
