@@ -159,6 +159,12 @@ These tools modify messages in your log. The server tells the agent to call them
 - `messages_bot` / `messages_unbot`: mark messages as bot traffic (1-500 per call), or undo it
 - `messages_bot_by_query` / `messages_unbot_by_query`: mark every message matching a query as bot traffic, or undo it, without passing IDs
 
+**Interactive views**
+
+These tools show a view in the conversation, which needs an AI client that supports MCP Apps. Other clients get plain text.
+
+- `stacktrace_render`: show a .NET or JavaScript stack trace as a formatted, syntax highlighted view
+
 ## Requirements
 
 - An active [elmah.io](https://elmah.io) account
